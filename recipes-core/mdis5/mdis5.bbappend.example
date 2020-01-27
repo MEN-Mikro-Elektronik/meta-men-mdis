@@ -1,0 +1,14 @@
+KERNEL_MODULE_PROBECONF += " men_lx_chameleon men_lx_z135 men_lx_z77 men_ll_z15 men_ll_z17_z127_sw"
+KERNEL_MODULE_AUTOLOAD += " men_lx_chameleon men_lx_z135 men_lx_z77 men_ll_z15 men_ll_z17_z127_sw"
+module_conf_men_lx_z135 = "options men_lx_z135 txlvl=6 rxlvl=5"
+module_conf_men_lx_z77 = "options men_lx_z77 phyadr=1,1 mode=4,4"
+
+FILESEXTRAPATHS_append := "${THISDIR}/${PN}:"
+
+SRC_URI_append = "\
+   file://0001-Eth_z77_driv_update.patch \
+   file://0001-hsu_z135_only_half_duplex.patch \
+   file://Makefile \
+   file://system.dsc \
+"
+
