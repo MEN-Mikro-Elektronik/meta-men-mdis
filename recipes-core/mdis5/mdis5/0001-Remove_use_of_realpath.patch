@@ -1,0 +1,17 @@
+diff --git a/INSTALL.sh b/INSTALL.sh
+index a0ee442..faddb39 100755
+--- a/INSTALL.sh
++++ b/INSTALL.sh
+@@ -81,12 +81,6 @@ function install_usage {
+ # return path = absolute path
+ get_abs_path () {
+     local path="${1}"
+-    pathStart=""
+-    case "${path}" in "~/"*)
+-        pathStart="${HOME}/"
+-        path="${path/"~/"/}"
+-    esac
+-    path="$(realpath -m "${pathStart}""${path}")"
+     echo "${path}"
+ }
+ 

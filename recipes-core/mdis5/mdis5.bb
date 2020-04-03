@@ -28,13 +28,12 @@ LIC_FILES_CHKSUM="\
     "
 
 SRC_URI = " \
-    gitsm://git@github.com/MEN-Mikro-Elektronik/13MD05-90.git;protocol=http;branch=master;name=mdis5;destsuffix=git/mdis5 \
-    file://0001-Remove_root_requirement.patch \
-    file://0001-Fixed_wrong_header_in_hwbug.patch \
+    gitsm://git@github.com/MEN-Mikro-Elektronik/13MD05-90.git;protocol=http;branch=jpe-dev;name=mdis5;destsuffix=git/mdis5 \
+    file://0001-Remove_the_use_of_realpath.patch \
 "
 
-# Used MDIS version: This version is release tag 13MD05-90_05_02_00_01
-SRCREV_mdis5 = "3a9cd49f92a3c75fced9988308164eaff38a2852"
+# Used MDIS version: This version is development branch jpe-dev
+SRCREV_mdis5 = "e8e0ad22de4d35a1fdd8f0be7b163d0b9e099f15"
 
 S = "${WORKDIR}"
 
@@ -42,9 +41,9 @@ S = "${WORKDIR}"
 MDIS_YOCTO_DIR = "${WORKDIR}/mdis_install"
 
 do_more_unpack() {
-   bbnote "Run INSTALL script"
+   bbnote "Run INSTALL.sh script"
    cd ${WORKDIR}/git/mdis5
-   yes "y" | ./INSTALL -p "${MDIS_YOCTO_DIR}"
+   ./INSTALL.sh -p ${MDIS_YOCTO_DIR} --install-only
 }
 addtask more_unpack after do_patch before do_configure
 
@@ -55,6 +54,7 @@ do_configure() {
     echo "KERNEL_CFLAGS := ${CFLAGS} -Wno-implicit-function-declaration"  >> target/.kernelsettings
     echo "KERNEL_LFLAGS := ${LDFLAGS}"   >> target/.kernelsettings
     echo "KERNEL_ARCH := ARM" >> target/.kernelsettings
+    sed -i 's/-Werror=format-security//g' ${WORKDIR}/target/.kernelsettings
     cp ${WORKDIR}/target/.kernelsettings ${MDIS_YOCTO_DIR}/BUILD/MDIS/DEVTOOLS/.kernelsettings
     if [ -f Makefile ]; then mv Makefile target/; fi
     if [ -f system.dsc ]; then mv system.dsc target/; fi
