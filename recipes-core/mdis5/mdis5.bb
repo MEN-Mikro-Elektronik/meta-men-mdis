@@ -29,7 +29,7 @@ LIC_FILES_CHKSUM="\
 
 SRC_URI = " \
     gitsm://git@github.com/MEN-Mikro-Elektronik/13MD05-90.git;protocol=http;branch=jpe-dev;name=mdis5;destsuffix=git/mdis5 \
-    file://0001-Remove_the_use_of_realpath.patch \
+    file://0001-Remove_use_of_realpath.patch \
 "
 
 # Used MDIS version: This version is development branch jpe-dev
@@ -40,14 +40,13 @@ S = "${WORKDIR}"
 # Temporary MDIS installation directory path
 MDIS_YOCTO_DIR = "${WORKDIR}/mdis_install"
 
-do_more_unpack() {
-   bbnote "Run INSTALL.sh script"
-   cd ${WORKDIR}/git/mdis5
-   ./INSTALL.sh -p ${MDIS_YOCTO_DIR} --install-only
-}
-addtask more_unpack after do_patch before do_configure
+addtask do_patch before do_configure
 
 do_configure() {
+    cd ${WORKDIR}/git/mdis5
+    bbnote "Run INSTALL.sh script"
+    ./INSTALL.sh -p ${MDIS_YOCTO_DIR} --install-only
+    cd ${WORKDIR}
     mkdir -p target
     echo "KERNEL_CC := ${CC}" >  target/.kernelsettings
     echo "KERNEL_LD := ${LD}" >> target/.kernelsettings
