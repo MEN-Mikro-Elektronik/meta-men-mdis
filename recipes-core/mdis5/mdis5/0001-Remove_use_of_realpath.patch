@@ -1,7 +1,7 @@
-diff --git a/INSTALL.sh b/INSTALL.sh
+diff --git a/git/mdis5/INSTALL.sh b/git/mdis5/INSTALL.sh
 index a0ee442..faddb39 100755
---- a/INSTALL.sh
-+++ b/INSTALL.sh
+--- a/git/mdis5/INSTALL.sh
++++ b/git/mdis5/INSTALL.sh
 @@ -81,12 +81,6 @@ function install_usage {
  # return path = absolute path
  get_abs_path () {
