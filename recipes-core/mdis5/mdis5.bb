@@ -21,6 +21,7 @@ CONFFILES_${PN} += "${sysconfdir}/mdis/cpu.bin \
     "
 
 FILES_${PN}-dev = "${includedir}"
+FILES_${PN} += "/opt/menlinux"
 
 LIC_FILES_CHKSUM="\
     file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6 \
@@ -103,6 +104,16 @@ do_install() {
     install -m 0660 ${MDIS_YOCTO_DIR}/INCLUDE/COM/MEN/chameleon.h        ${D}${includedir}/MEN
     install -m 0660 ${MDIS_YOCTO_DIR}/INCLUDE/NATIVE/MEN/men_chameleon.h ${D}${includedir}/MEN
     install -m 0660 ${MDIS_YOCTO_DIR}/INCLUDE/NATIVE/MEN/oss_os.h        ${D}${includedir}/MEN
+    
+    # Copy MDIS sources into filesystem
+    install -d ${D}/opt/menlinux
+    rm ${MDIS_YOCTO_DIR}/TOOLS/HWBUG/hwbug_cmd_ppc
+    rm ${MDIS_YOCTO_DIR}/TOOLS/HWBUG/hwbug_ppc
+    rm ${MDIS_YOCTO_DIR}/BIN/fpga_load_ppc
+    rm -rf ${MDIS_YOCTO_DIR}/BUILD/MDIS/DEVTOOLS/BIN
+    rm -rf ${MDIS_YOCTO_DIR}/BUILD/MDIS/DEVTOOLS/OBJ
+    rm ${MDIS_YOCTO_DIR}/BUILD/MDIS/DEVTOOLS/.kernelsettings
+    cp -r ${MDIS_YOCTO_DIR}/* ${D}/opt/menlinux/
 
     cd ${OLDPWD}
     unset OLDPWD
@@ -125,6 +136,9 @@ do_clean_preappend() {
 }
 
 INSANE_SKIP_${PN} += "installed-vs-shipped"
-INSANE_SKIP_${PN} = "ldflags"
+INSANE_SKIP_${PN} += "arch"
+INSANE_SKIP_${PN} += "ldflags"
+INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+INHIBIT_PACKAGE_STRIP = "1"
 INSANE_SKIP_${PN}-dev = "ldflags"
 INSANE_SKIP_${PN}-dev += "dev-elf"
