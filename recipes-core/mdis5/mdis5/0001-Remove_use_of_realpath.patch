@@ -1,5 +1,5 @@
 diff --git a/git/mdis5/INSTALL.sh b/git/mdis5/INSTALL.sh
-index a0ee442..faddb39 100755
+index 95f3403..8796923 100755
 --- a/git/mdis5/INSTALL.sh
 +++ b/git/mdis5/INSTALL.sh
 @@ -81,12 +81,6 @@ function install_usage {
