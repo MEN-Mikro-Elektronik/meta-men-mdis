@@ -106,90 +106,87 @@ endif
 DEVNODE_INSTALL_DIR = /dev
 
 ALL_LL_DRIVERS = \
-    XM01BC/DRIVER/COM/driver.mak \
-    SMB2/DRIVER/COM/driver.mak \
-    M034/DRIVER/COM/driver.mak \
-    MMODPRG/DRIVER/COM/driver.mak \
-    MMODPRG/DRIVER/COM/driver_4k.mak \
-    Z017/DRIVER/COM/driver.mak \
-    MSCAN/DRIVER/COM/driver_z15.mak \
-    ICANL2/DRIVER/COM/driver.mak \
-    M047/DRIVER/COM/driver.mak \
-    M033/DRIVER/COM/driver.mak
+	XM01BC/DRIVER/COM/driver.mak \
+	SMB2/DRIVER/COM/driver.mak \
+	ICANL2/DRIVER/COM/driver.mak \
+	MMODPRG/DRIVER/COM/driver.mak \
+	MMODPRG/DRIVER/COM/driver_4k.mak \
+	Z017/DRIVER/COM/driver.mak \
+	MSCAN/DRIVER/COM/driver_z15.mak \
+	M033/DRIVER/COM/driver.mak \
+	M047/DRIVER/COM/driver.mak
 
 ALL_BB_DRIVERS = \
-    SMB2BB/DRIVER/NATIVE/driver.mak \
-    D203/DRIVER/COM/driver_a24.mak \
-    CHAMELEON/DRIVER/COM/driver_pcitbl.mak \
-    D203/DRIVER/COM/driver.mak
+	SMB2BB/DRIVER/NATIVE/driver.mak \
+	D203/DRIVER/COM/driver_a24.mak \
+	CHAMELEON/DRIVER/COM/driver_pcitbl.mak \
+	D203/DRIVER/COM/driver.mak
 
 ALL_USR_LIBS = \
-    USR_OSS/library.mak \
-    USR_UTL/COM/library.mak \
-    SMB2_API/COM/library.mak \
-    SMB2_BMC_API/COM/library.mak \
-    SMB2_SHC/COM/library.mak \
-    MSCAN_API/COM/library.mak \
-    ICANL2_API/COM/library.mak
+	USR_OSS/library.mak \
+	USR_UTL/COM/library.mak \
+	SMB2_API/COM/library.mak \
+	SMB2_BMC_API/COM/library.mak \
+	SMB2_SHC/COM/library.mak \
+	ICANL2_API/COM/library.mak \
+	MSCAN_API/COM/library.mak
 
 ALL_CORE_LIBS = \
-    DBG/library.mak \
-    OSS/library.mak \
-    CHAMELEON/COM/library.mak
+	DBG/library.mak \
+	OSS/library.mak \
+	CHAMELEON/COM/library.mak \
 
 ALL_LL_TOOLS = \
-    XM01BC/TOOLS/XM01BC_CTRL/COM/program.mak \
-    SMB2/EXAMPLE/SMB2_SIMP/COM/program.mak \
-    SMB2/EXAMPLE/SMB2_F601/COM/program.mak \
-    SMB2/TOOLS/SMB2_CTRL/COM/program.mak \
-    SMB2/TOOLS/SMB2_BOARDIDENT/COM/program.mak \
-    SMB2/TOOLS/SMB2_TOUCH/COM/program.mak \
-    SMB2/TOOLS/SMB2_BMC_CTRL/COM/program.mak \
-    SMB2/TOOLS/SMB2_SHC_CTRL/COM/program.mak \
-    SMB2/TOOLS/SMB2_STM32_FLASH/COM/program.mak \
-    SMB2/TOOLS/SMB2_EETEMP/COM/program.mak \
-    SMB2/TOOLS/SMB2_POE/COM/program.mak \
-    M034/EXAMPLE/M34_SIMP/COM/program.mak \
-    M034/TOOLS/M34_READ/COM/program.mak \
-    M034/TOOLS/M34_BLKREAD/COM/program.mak \
-    Z017/EXAMPLE/Z17_SIMP/COM/program.mak \
-    Z017/TOOLS/Z17_IO/COM/program.mak \
-    Z017/TOOLS/Z127_IO/COM/program.mak \
-    Z017/TOOLS/Z127_IN/COM/program.mak \
-    Z017/TOOLS/Z127_OUT/COM/program.mak \
-    MSCAN/TOOLS/MSCAN_ALYZER/COM/program.mak \
-    MSCAN/TOOLS/MSCAN_LOOPB/COM/program.mak \
-    MSCAN/TOOLS/MSCAN_MENU/COM/program.mak \
-    ICANL2/EXAMPLE/ICANL2_SIMP/COM/program.mak \
-    ICANL2/EXAMPLE/ICANL2_CYC/COM/program.mak \
-    ICANL2/EXAMPLE/ICANL2_SIGNAL/COM/program.mak \
-    ICANL2/TEST/ICANL2_VERI/COM/program.mak \
-    M047/EXAMPLE/M47_SIMP/COM/program.mak \
-    M047/TOOLS/M47_TOOL/COM/program.mak \
-    M033/EXAMPLE/M33_DEMO/COM/program.mak \
-    M033/EXAMPLE/M33_EX1/COM/program.mak
+	XM01BC/TOOLS/XM01BC_CTRL/COM/program.mak \
+	SMB2/EXAMPLE/SMB2_SIMP/COM/program.mak \
+	SMB2/EXAMPLE/SMB2_F601/COM/program.mak \
+	SMB2/TOOLS/SMB2_CTRL/COM/program.mak \
+	SMB2/TOOLS/SMB2_BOARDIDENT/COM/program.mak \
+	SMB2/TOOLS/SMB2_TOUCH/COM/program.mak \
+	SMB2/TOOLS/SMB2_BMC_CTRL/COM/program.mak \
+	SMB2/TOOLS/SMB2_SHC_CTRL/COM/program.mak \
+	SMB2/TOOLS/SMB2_STM32_FLASH/COM/program.mak \
+	SMB2/TOOLS/SMB2_EETEMP/COM/program.mak \
+	SMB2/TOOLS/SMB2_POE/COM/program.mak \
+	ICANL2/EXAMPLE/ICANL2_SIMP/COM/program.mak \
+	ICANL2/EXAMPLE/ICANL2_CYC/COM/program.mak \
+	ICANL2/EXAMPLE/ICANL2_SIGNAL/COM/program.mak \
+	ICANL2/TEST/ICANL2_VERI/COM/program.mak \
+	Z017/EXAMPLE/Z17_SIMP/COM/program.mak \
+	Z017/TOOLS/Z17_IO/COM/program.mak \
+	Z017/TOOLS/Z127_IO/COM/program.mak \
+	Z017/TOOLS/Z127_IN/COM/program.mak \
+	Z017/TOOLS/Z127_OUT/COM/program.mak \
+	MSCAN/TOOLS/MSCAN_ALYZER/COM/program.mak \
+	MSCAN/TOOLS/MSCAN_LOOPB/COM/program.mak \
+	MSCAN/TOOLS/MSCAN_MENU/COM/program.mak \
+	MSCAN/TOOLS/MSCAN_PINGPONG/COM/program.mak \
+	M033/EXAMPLE/M33_DEMO/COM/program.mak \
+	M033/EXAMPLE/M33_EX1/COM/program.mak \
+	M047/EXAMPLE/M47_SIMP/COM/program.mak \
+	M047/TOOLS/M47_TOOL/COM/program.mak
 
 ALL_COM_TOOLS = \
-    MDIS_API/M_ERRSTR/COM/program.mak \
-    MDIS_API/M_GETBLOCK/COM/program.mak \
-    MDIS_API/M_GETSTAT/COM/program.mak \
-    MDIS_API/M_GETSTAT_BLK/COM/program.mak \
-    MDIS_API/M_MOD_ID/COM/program.mak \
-    MDIS_API/M_OPEN/COM/program.mak \
-    MDIS_API/M_READ/COM/program.mak \
-    MDIS_API/M_REV_ID/COM/program.mak \
-    MDIS_API/M_SETBLOCK/COM/program.mak \
-    MDIS_API/M_SETSTAT/COM/program.mak \
-    MDIS_API/M_SETSTAT_BLK/COM/program.mak \
-    MDIS_API/M_WRITE/COM/program.mak \
-    WDOG/WDOG_TEST/COM/program.mak \
-    WDOG/WDOG_SIMP/COM/program.mak
+	MDIS_API/M_ERRSTR/COM/program.mak \
+	MDIS_API/M_GETBLOCK/COM/program.mak \
+	MDIS_API/M_GETSTAT/COM/program.mak \
+	MDIS_API/M_GETSTAT_BLK/COM/program.mak \
+	MDIS_API/M_MOD_ID/COM/program.mak \
+	MDIS_API/M_OPEN/COM/program.mak \
+	MDIS_API/M_READ/COM/program.mak \
+	MDIS_API/M_REV_ID/COM/program.mak \
+	MDIS_API/M_SETBLOCK/COM/program.mak \
+	MDIS_API/M_SETSTAT/COM/program.mak \
+	MDIS_API/M_SETSTAT_BLK/COM/program.mak \
+	MDIS_API/M_WRITE/COM/program.mak \
+	WDOG/WDOG_TEST/COM/program.mak \
+	WDOG/WDOG_SIMP/COM/program.mak \
 
 ALL_NATIVE_DRIVERS = \
-    DRIVERS/13Z025/driver.mak \
-    DRIVERS/CHAMELEON/driver.mak \
-    DRIVERS/Z069_RST_WDG/driver.mak
-
+	DRIVERS/M077/DRIVER/driver.mak \
+	DRIVERS/13Z025/driver.mak \
+	DRIVERS/CHAMELEON/driver.mak \
+	DRIVERS/Z069_RST_WDG/driver.mak
 
 ALL_NATIVE_LIBS =
 
