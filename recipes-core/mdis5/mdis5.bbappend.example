@@ -2,7 +2,7 @@ KERNEL_MODULE_PROBECONF += " men_mdis_kernel men_ll_m47 men_ll_m33 men_ll_icanl2
 KERNEL_MODULE_AUTOLOAD += " men_mdis_kernel men_ll_m47 men_ll_m33 men_ll_icanl2 men_ll_z17 men_ll_z15 men_lx_z25 men_lx_m77"
 
 module_conf_men_lx_z25 = "options men_lx_z25 baud_base=1843200 mode=se,se"
-module_conf_men_lx_m77 = "install men_lx_m77 mdis_createdev -b d203_a24_2; /sbin/modprobe men_lx_m77 devname=m77_1 brdName=d203_a24_2 slotNo=0 mode=7,7,7,7 --ignore-install"
+module_conf_men_lx_m77 = "install men_lx_m77 mdis_createdev -b d203_a24_2; /sbin/modprobe men_lx_m77 devName=m77_1 brdName=d203_a24_2 slotNo=0 mode=7,7,7,7 --ignore-install"
 
 SRC_URI_append = "\
    file://Makefile \
