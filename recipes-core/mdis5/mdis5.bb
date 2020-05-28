@@ -53,7 +53,7 @@ do_configure() {
     echo "KERNEL_LD := ${LD}" >> target/.kernelsettings
     echo "KERNEL_CFLAGS := ${CFLAGS} -Wno-implicit-function-declaration"  >> target/.kernelsettings
     echo "KERNEL_LFLAGS := ${LDFLAGS}"   >> target/.kernelsettings
-    echo "KERNEL_ARCH := ARM" >> target/.kernelsettings
+    echo "KERNEL_ARCH := x86" >> target/.kernelsettings
     sed -i 's/-Werror=format-security//g' ${WORKDIR}/target/.kernelsettings
     cp ${WORKDIR}/target/.kernelsettings ${MDIS_YOCTO_DIR}/BUILD/MDIS/DEVTOOLS/.kernelsettings
     if [ -f Makefile ]; then mv Makefile target/; fi

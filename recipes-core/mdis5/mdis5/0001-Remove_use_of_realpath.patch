@@ -1,7 +1,7 @@
-diff --git a/git/mdis5/INSTALL.sh b/git/mdis5/INSTALL.sh
-index 95f3403..8796923 100755
---- a/git/mdis5/INSTALL.sh
-+++ b/git/mdis5/INSTALL.sh
+Index: 1.0-r0/git/mdis5/INSTALL.sh
+===================================================================
+--- 1.0-r0.orig/git/mdis5/INSTALL.sh
++++ 1.0-r0/git/mdis5/INSTALL.sh
 @@ -81,12 +81,6 @@ function install_usage {
  # return path = absolute path
  get_abs_path () {
@@ -15,3 +15,11 @@ index 95f3403..8796923 100755
      echo "${path}"
  }
  
+@@ -194,7 +188,6 @@ getPrerequisites() {
+ 	local -a prerequisites=( \
+ 		"rsync" \
+ 		"make" \
+-		"cc" \
+ 	)
+ 
+ 	# Require git if there's a .git repo dir
