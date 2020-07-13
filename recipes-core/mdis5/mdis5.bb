@@ -21,6 +21,7 @@ CONFFILES_${PN} += "${sysconfdir}/mdis/cpu.bin \
     "
 
 FILES_${PN}-dev = "${includedir}"
+FILES_${PN} += "/opt/menlinux"
 
 LIC_FILES_CHKSUM="\
     file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6 \
@@ -28,33 +29,32 @@ LIC_FILES_CHKSUM="\
     "
 
 SRC_URI = " \
-    gitsm://git@github.com/MEN-Mikro-Elektronik/13MD05-90.git;protocol=http;branch=master;name=mdis5;destsuffix=git/mdis5 \
-    file://0001-Remove_root_requirement.patch \
-    file://0001-Fixed_wrong_header_in_hwbug.patch \
+    gitsm://git@github.com/MEN-Mikro-Elektronik/13MD05-90.git;protocol=http;branch=release-13MD05-90_02_02;name=mdis5;destsuffix=git/mdis5 \
+    file://0001-Remove_use_of_realpath.patch \
 "
 
-# Used MDIS version: This version is release tag 13MD05-90_05_02_00_01
-SRCREV_mdis5 = "3a9cd49f92a3c75fced9988308164eaff38a2852"
+# Used MDIS version: This version is development branch jpe-dev
+SRCREV_mdis5 = "d2f6bda388f61ccaaca4c7f17520d0153682e871"
 
 S = "${WORKDIR}"
 
 # Temporary MDIS installation directory path
 MDIS_YOCTO_DIR = "${WORKDIR}/mdis_install"
 
-do_more_unpack() {
-   bbnote "Run INSTALL script"
-   cd ${WORKDIR}/git/mdis5
-   yes "y" | ./INSTALL -p "${MDIS_YOCTO_DIR}"
-}
-addtask more_unpack after do_patch before do_configure
+addtask do_patch before do_configure
 
 do_configure() {
+    cd ${WORKDIR}/git/mdis5
+    bbnote "Run INSTALL.sh script"
+    ./INSTALL.sh -p ${MDIS_YOCTO_DIR} --install-only
+    cd ${WORKDIR}
     mkdir -p target
     echo "KERNEL_CC := ${CC}" >  target/.kernelsettings
     echo "KERNEL_LD := ${LD}" >> target/.kernelsettings
     echo "KERNEL_CFLAGS := ${CFLAGS} -Wno-implicit-function-declaration"  >> target/.kernelsettings
     echo "KERNEL_LFLAGS := ${LDFLAGS}"   >> target/.kernelsettings
-    echo "KERNEL_ARCH := ARM" >> target/.kernelsettings
+    echo "KERNEL_ARCH := x86" >> target/.kernelsettings
+    sed -i 's/-Werror=format-security//g' ${WORKDIR}/target/.kernelsettings
     cp ${WORKDIR}/target/.kernelsettings ${MDIS_YOCTO_DIR}/BUILD/MDIS/DEVTOOLS/.kernelsettings
     if [ -f Makefile ]; then mv Makefile target/; fi
     if [ -f system.dsc ]; then mv system.dsc target/; fi
@@ -104,6 +104,16 @@ do_install() {
     install -m 0660 ${MDIS_YOCTO_DIR}/INCLUDE/COM/MEN/chameleon.h        ${D}${includedir}/MEN
     install -m 0660 ${MDIS_YOCTO_DIR}/INCLUDE/NATIVE/MEN/men_chameleon.h ${D}${includedir}/MEN
     install -m 0660 ${MDIS_YOCTO_DIR}/INCLUDE/NATIVE/MEN/oss_os.h        ${D}${includedir}/MEN
+    
+    # Copy MDIS sources into filesystem
+    install -d ${D}/opt/menlinux
+    rm ${MDIS_YOCTO_DIR}/TOOLS/HWBUG/hwbug_cmd_ppc
+    rm ${MDIS_YOCTO_DIR}/TOOLS/HWBUG/hwbug_ppc
+    rm ${MDIS_YOCTO_DIR}/BIN/fpga_load_ppc
+    rm -rf ${MDIS_YOCTO_DIR}/BUILD/MDIS/DEVTOOLS/BIN
+    rm -rf ${MDIS_YOCTO_DIR}/BUILD/MDIS/DEVTOOLS/OBJ
+    rm ${MDIS_YOCTO_DIR}/BUILD/MDIS/DEVTOOLS/.kernelsettings
+    cp -r ${MDIS_YOCTO_DIR}/* ${D}/opt/menlinux/
 
     cd ${OLDPWD}
     unset OLDPWD
@@ -126,6 +136,9 @@ do_clean_preappend() {
 }
 
 INSANE_SKIP_${PN} += "installed-vs-shipped"
-INSANE_SKIP_${PN} = "ldflags"
+INSANE_SKIP_${PN} += "arch"
+INSANE_SKIP_${PN} += "ldflags"
+INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+INHIBIT_PACKAGE_STRIP = "1"
 INSANE_SKIP_${PN}-dev = "ldflags"
 INSANE_SKIP_${PN}-dev += "dev-elf"

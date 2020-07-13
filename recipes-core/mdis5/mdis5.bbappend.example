@@ -1,14 +1,10 @@
-KERNEL_MODULE_PROBECONF += " men_lx_chameleon men_lx_z135 men_lx_z77 men_ll_z15 men_ll_z17_z127_sw"
-KERNEL_MODULE_AUTOLOAD += " men_lx_chameleon men_lx_z135 men_lx_z77 men_ll_z15 men_ll_z17_z127_sw"
-module_conf_men_lx_z135 = "options men_lx_z135 txlvl=6 rxlvl=5"
-module_conf_men_lx_z77 = "options men_lx_z77 phyadr=1,1 mode=4,4"
+KERNEL_MODULE_PROBECONF += " men_mdis_kernel men_ll_m47 men_ll_m33 men_ll_icanl2 men_ll_z17 men_ll_z15 men_lx_z25 men_lx_m77"
+KERNEL_MODULE_AUTOLOAD += " men_mdis_kernel men_ll_m47 men_ll_m33 men_ll_icanl2 men_ll_z17 men_ll_z15 men_lx_z25 men_lx_m77"
 
-FILESEXTRAPATHS_append := "${THISDIR}/${PN}:"
+module_conf_men_lx_z25 = "options men_lx_z25 baud_base=1843200 mode=se,se"
+module_conf_men_lx_m77 = "install men_lx_m77 mdis_createdev -b d203_a24_2; /sbin/modprobe men_lx_m77 devName=m77_1 brdName=d203_a24_2 slotNo=0 mode=7,7,7,7 --ignore-install"
 
 SRC_URI_append = "\
-   file://0001-Eth_z77_driv_update.patch \
-   file://0001-hsu_z135_only_half_duplex.patch \
    file://Makefile \
    file://system.dsc \
 "
-
