@@ -29,12 +29,10 @@ LIC_FILES_CHKSUM="\
     "
 
 SRC_URI = " \
-    gitsm://git@github.com/MEN-Mikro-Elektronik/13MD05-90.git;protocol=http;branch=release-13MD05-90_02_03;name=mdis5;destsuffix=git/mdis5 \
+    gitsm://git@github.com/MEN-Mikro-Elektronik/13MD05-90.git;protocol=http;branch=master;name=mdis5;destsuffix=git/mdis5 \
     file://0001-Remove_use_of_realpath.patch \
 "
-
-# Used MDIS version: This version is development branch jpe-dev
-SRCREV_mdis5 = "fb8e0eee309b64a5b9cec45d118c16d10be07031"
+SRCREV_mdis5 = "${AUTOREV}"
 
 S = "${WORKDIR}"
 
