@@ -6,7 +6,7 @@ SECTION = "misc"
 
 inherit module module-base
 
-DEPENDS += "virtual/kernel pciutils rsync-native"
+DEPENDS += "virtual/kernel pciutils rsync-native bison-native"
 
 PR = "r0"
 
