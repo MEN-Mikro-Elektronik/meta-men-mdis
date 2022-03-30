@@ -32,7 +32,8 @@ SRC_URI = " \
     gitsm://git@github.com/MEN-Mikro-Elektronik/13MD05-90.git;protocol=http;branch=master;name=mdis5;destsuffix=git/mdis5 \
     file://0001-Remove_use_of_realpath.patch \
 "
-SRCREV_mdis5 = "${AUTOREV}"
+#SRCREV_mdis5 = "${AUTOREV}"
+SRCREV_mdis5 = "f6027159ba4454e350328f3ad8aad66b788811d1"
 
 S = "${WORKDIR}"
 
