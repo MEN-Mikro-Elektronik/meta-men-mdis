@@ -1,7 +1,7 @@
-SUMMARY = "MEN MDIS5 System Package for Linux"
-HOMEPAGE = "http://www.men.de"
+SUMMARY = "MDIS5 System Package for Linux"
+HOMEPAGE = "https://www.duagon.com"
 
-LICENSE = "GPLv2"
+LICENSE = "GPL-2.0-only"
 SECTION = "misc"
 
 inherit module module-base
@@ -10,29 +10,29 @@ DEPENDS += "virtual/kernel pciutils rsync-native bison-native"
 
 PR = "r0"
 
-FILES_${PN}_append = " \
+FILES:${PN}:append = " \
     ${sysconfdir} \
     ${libdir} \
     ${includedir} \
     ${bindir} \
 "
 
-CONFFILES_${PN} += "${sysconfdir}/mdis/cpu.bin \
+CONFFILES:${PN} += "${sysconfdir}/mdis/cpu.bin \
     "
 
-FILES_${PN}-dev = "${includedir}"
-FILES_${PN} += "/opt/menlinux"
+FILES:${PN}-dev = "${includedir}"
+FILES:${PN} += "/opt/menlinux"
 
 LIC_FILES_CHKSUM="\
-    file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6 \
-    file://${COMMON_LICENSE_DIR}/LGPL-2.1;md5=1a6d268fd218675ffea8be556788b780 \
+    file://${COMMON_LICENSE_DIR}/GPL-2.0-only;md5=801f80980d171dd6425610833a22dbe6 \
+    file://${COMMON_LICENSE_DIR}/LGPL-2.1-only;md5=1a6d268fd218675ffea8be556788b780 \
     "
 
 SRC_URI = " \
     gitsm://git@github.com/MEN-Mikro-Elektronik/13MD05-90.git;protocol=http;branch=master;name=mdis5;destsuffix=git/mdis5 \
     file://0001-Remove_use_of_realpath.patch \
 "
-#SRCREV_mdis5 = "${AUTOREV}"
+# SRCREV_mdis5 = "${AUTOREV}"
 SRCREV_mdis5 = "f6027159ba4454e350328f3ad8aad66b788811d1"
 
 S = "${WORKDIR}"
@@ -79,7 +79,7 @@ do_compile() {
     unset OLDPWD
 }
 
-do_package_prepend() {
+do_package:prepend() {
 
 }
 
@@ -95,7 +95,7 @@ do_install() {
          DESC_INSTALL_DIR=${D}${sysconfdir}/mdis \
          MODS_INSTALL_DIR=${D}/lib/modules/${KERNEL_VERSION}/misc \
          TARGET_TREE=${D} install
-  
+
     # TODO: headers are needed for other dependcies but should not be installed
     install -d ${D}${includedir}/MEN
     install -m 0660 ${MDIS_YOCTO_DIR}/INCLUDE/COM/MEN/men_typs.h         ${D}${includedir}/MEN
@@ -103,7 +103,7 @@ do_install() {
     install -m 0660 ${MDIS_YOCTO_DIR}/INCLUDE/COM/MEN/chameleon.h        ${D}${includedir}/MEN
     install -m 0660 ${MDIS_YOCTO_DIR}/INCLUDE/NATIVE/MEN/men_chameleon.h ${D}${includedir}/MEN
     install -m 0660 ${MDIS_YOCTO_DIR}/INCLUDE/NATIVE/MEN/oss_os.h        ${D}${includedir}/MEN
-    
+
     # Copy MDIS sources into filesystem
     install -d ${D}/opt/menlinux
     rm ${MDIS_YOCTO_DIR}/TOOLS/HWBUG/hwbug_cmd_ppc
@@ -134,10 +134,10 @@ do_clean_preappend() {
     unset OLDPWD
 }
 
-INSANE_SKIP_${PN} += "installed-vs-shipped"
-INSANE_SKIP_${PN} += "arch"
-INSANE_SKIP_${PN} += "ldflags"
+INSANE_SKIP:${PN} += "installed-vs-shipped"
+INSANE_SKIP:${PN} += "arch"
+INSANE_SKIP:${PN} += "ldflags"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 INHIBIT_PACKAGE_STRIP = "1"
-INSANE_SKIP_${PN}-dev = "ldflags"
-INSANE_SKIP_${PN}-dev += "dev-elf"
+INSANE_SKIP:${PN}-dev = "ldflags"
+INSANE_SKIP:${PN}-dev += "dev-elf"
