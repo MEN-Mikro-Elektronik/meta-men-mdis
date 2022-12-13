@@ -1,7 +1,7 @@
 SUMMARY = "MDIS5 System Package for Linux"
 HOMEPAGE = "https://www.duagon.com"
 
-LICENSE = "GPLv2"
+LICENSE = "GPL-2.0-only"
 SECTION = "misc"
 
 inherit module module-base
